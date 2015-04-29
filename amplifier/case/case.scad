@@ -35,32 +35,39 @@ slot_count_rl = 5; 	// number of slots on the sides (>=2)
 slot_length_rl = 10;	// slot length right/left
 
 
+// build it!!
+faun_case();
+// laser it!!
+//faun_laser();
 
 /**********************************************************************************************
  building
 **********************************************************************************************/
 
-//build_volume();
-build_bottom();
-build_top();
-build_right();
-build_left();
-build_front();
-build_back();
+module faun_case()
+{
+	//build_volume();
+	build_bottom();
+	build_top();
+	build_right();
+	build_left();
+	build_front();
+	build_back();
 
-build_pcb();
-build_transformer();
+	build_pcb();
+	build_transformer();
+}
 
-// to make dxfs for laser cutting, uncomment the block
-/*
-proj_pad = 1;  						// space between panels for cutting
-projection() build_top();
-projection() translate([0,length+proj_pad+2*spacing+2*thickness,0]) build_bottom();
-projection() translate([0,-length/2-height/2-2*thickness-spacing-proj_pad, 0]) rotate([90,0,0]) build_front();
-projection() translate([0,-length/2-height-height/2-4*thickness-spacing-2*proj_pad, 0]) rotate([90,0,0]) build_back();
-projection() translate([width/2+height/2+2*thickness+spacing+proj_pad,0, 0]) rotate([0,90,0]) build_right();
-projection() translate([width/2+height/2+2*thickness+spacing+proj_pad,length+proj_pad+2*spacing+2*thickness, 0]) rotate([0,90,0]) build_left();
-*/
+module faun_laser()
+{
+	proj_pad = 1;  						// space between panels for cutting
+	projection() build_top();
+	projection() translate([0,length+proj_pad+2*spacing+2*thickness,0]) build_bottom();
+	projection() translate([0,-length/2-height/2-2*thickness-spacing-proj_pad, 0]) rotate([90,0,0]) build_front();
+	projection() translate([0,-length/2-height-height/2-4*thickness-spacing-2*proj_pad, 0]) rotate([90,0,0]) build_back();
+	projection() translate([width/2+height/2+2*thickness+spacing+proj_pad,0, 0]) rotate([0,90,0]) build_right();
+	projection() translate([width/2+height/2+2*thickness+spacing+proj_pad,length+proj_pad+2*spacing+2*thickness, 0]) rotate([0,90,0]) build_left();
+}
 
 /**********************************************************************************************
  pcb and transformer
